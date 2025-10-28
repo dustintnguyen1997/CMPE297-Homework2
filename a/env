@@ -1,0 +1,11 @@
+GOOGLE_GENAI_USE_VERTEXAI=1
+GOOGLE_CLOUD_PROJECT=CMPE297-Homework4
+GOOGLE_CLOUD_LOCATION=us-central1
+GOOGLE_CLOUD_STORAGE_BUCKET= gs://dabucket212 # Only required for deployment on Agent Engine
+GCS_BUCKET_NAME=gs://dabucket212 #Bucket for storing generated images.
+SCORE_THRESHOLD=40 # Min threshold for image_score. Max Score is 50 , hence should be less than 50. 
+#If the computed score is higher then loop will terminate
+#MAX_ITERATIONS=5 #Max iterations for evaluating the image_score before terminating the loop.
+IMAGEN_MODEL="imagen-3.0-generate-002" 
+GENAI_MODEL="gemini-2.5-flash"
+#AGENT_ENGINE_ID=<AGENT_ENGINE_ID> #The Agent Engine ID obtained after deploying to the agent engine.
