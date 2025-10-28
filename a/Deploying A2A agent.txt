@@ -1,0 +1,788 @@
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1293, in _async_request
+    return await self._async_retry(  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/__init__.py", line 420, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/__init__.py", line 187, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1238, in _async_request_once
+    await errors.APIError.raise_for_async_response(response)
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/errors.py", line 166, in raise_for_async_response
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'Permission denied on resource project CMPE297-Homework4.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'CONSUMER_INVALID', 'domain': 'googleapis.com', 'metadata': {'containerInfo': 'CMPE297-Homework4', 'consumer': 'projects/CMPE297-Homework4', 'service': 'aiplatform.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'Permission denied on resource project CMPE297-Homework4.'}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Google developers console', 'url': 'https://console.developers.google.com'}]}]}}
+INFO:     127.0.0.1:47286 - "GET /apps/image_scoring/users/user/sessions/8dd6d2cc-9e49-4d10-8a4f-bdc5b5918c1c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38518 - "GET /debug/trace/session/8dd6d2cc-9e49-4d10-8a4f-bdc5b5918c1c HTTP/1.1" 200 OK
+^CINFO:     Shutting down
+INFO:     Waiting for application shutdown.
+
++-----------------------------------------------------------------------------+
+| ADK Web Server shutting down...                                             |
++-----------------------------------------------------------------------------+
+
+INFO:     Application shutdown complete.
+INFO:     Finished server process [2676]
+
+Aborted!
+^C
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ export GCS_BUCKET_NAME=dabucket212
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ adk web
+/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/cli/fast_api.py:396: UserWarning: [EXPERIMENTAL] InMemoryCredentialService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  credential_service = InMemoryCredentialService()
+/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/auth/credential_service/in_memory_credential_service.py:33: UserWarning: [EXPERIMENTAL] BaseCredentialService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  super().__init__()
+INFO:     Started server process [2692]
+INFO:     Waiting for application startup.
+
++-----------------------------------------------------------------------------+
+| ADK Web Server started                                                      |
+|                                                                             |
+| For local testing, access at http://localhost:8000.                         |
++-----------------------------------------------------------------------------+
+
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+^CINFO:     Shutting down
+INFO:     Waiting for application shutdown.
+
++-----------------------------------------------------------------------------+
+| ADK Web Server shutting down...                                             |
++-----------------------------------------------------------------------------+
+
+INFO:     Application shutdown complete.
+INFO:     Finished server process [2692]
+
+Aborted!
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ gcloud services enable aiplatform.googleapis.com \
+    storage.googleapis.com iam.googleapis.com serviceusage.googleapis.com \
+    compute.googleapis.com artifactregistry.googleapis.com cloudbuild.googleapis.com
+
+Operation "operations/acf.p2-195935768771-089d9b2c-730d-40a0-83e4-696ee765a6ac" finished successfully.
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ 
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ export GCS_BUCKET_NAME=dabucket212
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ adk web
+/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/cli/fast_api.py:396: UserWarning: [EXPERIMENTAL] InMemoryCredentialService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  credential_service = InMemoryCredentialService()
+/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/auth/credential_service/in_memory_credential_service.py:33: UserWarning: [EXPERIMENTAL] BaseCredentialService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  super().__init__()
+INFO:     Started server process [2776]
+INFO:     Waiting for application startup.
+
++-----------------------------------------------------------------------------+
+| ADK Web Server started                                                      |
+|                                                                             |
+| For local testing, access at http://localhost:8000.                         |
++-----------------------------------------------------------------------------+
+
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:43870 - "GET /?authuser=1 HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:43870 - "GET /dev-ui/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43870 - "GET /dev-ui/chunk-EQDQRRRY.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43870 - "GET /dev-ui/polyfills-B6TNHZQ6.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43870 - "GET /dev-ui/main-W7QZBYAR.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:43870 - "GET /dev-ui/styles-4VDSPQ37.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43870 - "GET /dev-ui/assets/ADK-512-color.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43870 - "GET /dev-ui/assets/config/runtime-config.json HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:43870 - "GET /dev-ui/adk_favicon.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43880 - "GET /list-apps?relative_path=./ HTTP/1.1" 200 OK
+2025-10-28 18:08:25,191 - INFO - fast_api.py:517 - New session created
+INFO:     127.0.0.1:43880 - "POST /apps/image_scoring/users/user/sessions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40074 - "GET /apps/image_scoring/eval_sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40074 - "GET /apps/image_scoring/users/user/sessions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40074 - "GET /apps/image_scoring/eval_results HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40074 - "GET /apps/image_scoring/users/user/sessions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40074 - "POST /run_sse HTTP/1.1" 200 OK
+2025-10-28 18:08:29,335 - INFO - envs.py:47 - Loaded .env file for image_scoring at /home/dustin_t_nguyen/imagescoring/.env
+2025-10-28 18:08:29,337 - INFO - envs.py:47 - Loaded .env file for image_scoring at /home/dustin_t_nguyen/imagescoring/.env
+2025-10-28 18:08:29,484 - INFO - agent_loader.py:102 - Found root_agent in image_scoring.agent
+2025-10-28 18:08:29,604 - INFO - google_llm.py:93 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2025-10-28 18:08:29,604 - INFO - models.py:6756 - AFC is enabled with max remote calls: 10.
+2025-10-28 18:08:29,870 - ERROR - fast_api.py:928 - Error in event_generator: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'Permission denied on resource project CMPE297-Homework4.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'CONSUMER_INVALID', 'domain': 'googleapis.com', 'metadata': {'consumer': 'projects/CMPE297-Homework4', 'service': 'aiplatform.googleapis.com', 'containerInfo': 'CMPE297-Homework4'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'Permission denied on resource project CMPE297-Homework4.'}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Google developers console', 'url': 'https://console.developers.google.com'}]}]}}
+Traceback (most recent call last):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/cli/fast_api.py", line 916, in event_generator
+    async for event in runner.run_async(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/runners.py", line 233, in run_async
+    async for event in self._exec_with_plugin(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/runners.py", line 273, in _exec_with_plugin
+    async for event in execute_fn(invocation_context):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/runners.py", line 230, in execute
+    async for event in ctx.agent.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 209, in run_async
+    async for event in self._run_async_impl(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/loop_agent.py", line 57, in _run_async_impl
+    async for event in sub_agent.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 209, in run_async
+    async for event in self._run_async_impl(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/sequential_agent.py", line 41, in _run_async_impl
+    async for event in sub_agent.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 209, in run_async
+    async for event in self._run_async_impl(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/llm_agent.py", line 283, in _run_async_impl
+    async for event in self._llm_flow.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 290, in run_async
+    async for event in self._run_one_step_async(invocation_context):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 318, in _run_one_step_async
+    async for llm_response in self._call_llm_async(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 556, in _call_llm_async
+    async for llm_response in llm.generate_content_async(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 177, in generate_content_async
+    response = await self.api_client.aio.models.generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/models.py", line 6762, in generate_content
+    response = await self._generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/models.py", line 5597, in _generate_content
+    response = await self._api_client.async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1348, in async_request
+    result = await self._async_request(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1293, in _async_request
+    return await self._async_retry(  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/__init__.py", line 420, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/__init__.py", line 187, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1238, in _async_request_once
+    await errors.APIError.raise_for_async_response(response)
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/errors.py", line 166, in raise_for_async_response
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'Permission denied on resource project CMPE297-Homework4.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'CONSUMER_INVALID', 'domain': 'googleapis.com', 'metadata': {'consumer': 'projects/CMPE297-Homework4', 'service': 'aiplatform.googleapis.com', 'containerInfo': 'CMPE297-Homework4'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'Permission denied on resource project CMPE297-Homework4.'}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Google developers console', 'url': 'https://console.developers.google.com'}]}]}}
+INFO:     127.0.0.1:40074 - "GET /apps/image_scoring/users/user/sessions/8de5b5a7-5a81-4d53-9495-4dd644e86481 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43880 - "GET /debug/trace/session/8de5b5a7-5a81-4d53-9495-4dd644e86481 HTTP/1.1" 200 OK
+^CINFO:     Shutting down
+INFO:     Waiting for application shutdown.
+
++-----------------------------------------------------------------------------+
+| ADK Web Server shutting down...                                             |
++-----------------------------------------------------------------------------+
+
+INFO:     Application shutdown complete.
+INFO:     Finished server process [2776]
+
+Aborted!
+^C
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ adk web
+/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/cli/fast_api.py:396: UserWarning: [EXPERIMENTAL] InMemoryCredentialService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  credential_service = InMemoryCredentialService()
+/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/auth/credential_service/in_memory_credential_service.py:33: UserWarning: [EXPERIMENTAL] BaseCredentialService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  super().__init__()
+INFO:     Started server process [2843]
+INFO:     Waiting for application startup.
+
++-----------------------------------------------------------------------------+
+| ADK Web Server started                                                      |
+|                                                                             |
+| For local testing, access at http://localhost:8000.                         |
++-----------------------------------------------------------------------------+
+
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:49378 - "GET /?authuser=1 HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:49378 - "GET /dev-ui/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49378 - "GET /dev-ui/chunk-EQDQRRRY.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:49378 - "GET /dev-ui/main-W7QZBYAR.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:49386 - "GET /dev-ui/polyfills-B6TNHZQ6.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49386 - "GET /dev-ui/styles-4VDSPQ37.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49386 - "GET /dev-ui/assets/config/runtime-config.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49386 - "GET /dev-ui/assets/ADK-512-color.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49386 - "GET /list-apps?relative_path=./ HTTP/1.1" 200 OK
+2025-10-28 18:46:52,660 - INFO - fast_api.py:517 - New session created
+INFO:     127.0.0.1:49386 - "POST /apps/image_scoring/users/user/sessions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49386 - "GET /apps/image_scoring/eval_sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49386 - "GET /apps/image_scoring/users/user/sessions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49386 - "GET /apps/image_scoring/eval_results HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49386 - "GET /apps/image_scoring/users/user/sessions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49386 - "POST /run_sse HTTP/1.1" 200 OK
+2025-10-28 18:46:55,536 - INFO - envs.py:47 - Loaded .env file for image_scoring at /home/dustin_t_nguyen/imagescoring/.env
+2025-10-28 18:46:55,538 - INFO - envs.py:47 - Loaded .env file for image_scoring at /home/dustin_t_nguyen/imagescoring/.env
+2025-10-28 18:46:55,710 - INFO - agent_loader.py:102 - Found root_agent in image_scoring.agent
+2025-10-28 18:46:55,842 - INFO - google_llm.py:93 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2025-10-28 18:46:55,842 - INFO - models.py:6756 - AFC is enabled with max remote calls: 10.
+2025-10-28 18:46:56,108 - ERROR - fast_api.py:928 - Error in event_generator: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'Permission denied on resource project CMPE297-Homework4.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'CONSUMER_INVALID', 'domain': 'googleapis.com', 'metadata': {'containerInfo': 'CMPE297-Homework4', 'consumer': 'projects/CMPE297-Homework4', 'service': 'aiplatform.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'Permission denied on resource project CMPE297-Homework4.'}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Google developers console', 'url': 'https://console.developers.google.com'}]}]}}
+Traceback (most recent call last):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/cli/fast_api.py", line 916, in event_generator
+    async for event in runner.run_async(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/runners.py", line 233, in run_async
+    async for event in self._exec_with_plugin(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/runners.py", line 273, in _exec_with_plugin
+    async for event in execute_fn(invocation_context):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/runners.py", line 230, in execute
+    async for event in ctx.agent.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 209, in run_async
+    async for event in self._run_async_impl(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/loop_agent.py", line 57, in _run_async_impl
+    async for event in sub_agent.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 209, in run_async
+    async for event in self._run_async_impl(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/sequential_agent.py", line 41, in _run_async_impl
+    async for event in sub_agent.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 209, in run_async
+    async for event in self._run_async_impl(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/llm_agent.py", line 283, in _run_async_impl
+    async for event in self._llm_flow.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 290, in run_async
+    async for event in self._run_one_step_async(invocation_context):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 318, in _run_one_step_async
+    async for llm_response in self._call_llm_async(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 556, in _call_llm_async
+    async for llm_response in llm.generate_content_async(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 177, in generate_content_async
+    response = await self.api_client.aio.models.generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/models.py", line 6762, in generate_content
+    response = await self._generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/models.py", line 5597, in _generate_content
+    response = await self._api_client.async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1348, in async_request
+    result = await self._async_request(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1293, in _async_request
+    return await self._async_retry(  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/__init__.py", line 420, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/__init__.py", line 187, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1238, in _async_request_once
+    await errors.APIError.raise_for_async_response(response)
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/errors.py", line 166, in raise_for_async_response
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'Permission denied on resource project CMPE297-Homework4.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'CONSUMER_INVALID', 'domain': 'googleapis.com', 'metadata': {'containerInfo': 'CMPE297-Homework4', 'consumer': 'projects/CMPE297-Homework4', 'service': 'aiplatform.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'Permission denied on resource project CMPE297-Homework4.'}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Google developers console', 'url': 'https://console.developers.google.com'}]}]}}
+INFO:     127.0.0.1:37224 - "GET /apps/image_scoring/users/user/sessions/18aac073-ea72-4e66-9b15-3268fc0dddef HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49386 - "GET /debug/trace/session/18aac073-ea72-4e66-9b15-3268fc0dddef HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40580 - "POST /run_sse HTTP/1.1" 200 OK
+2025-10-28 18:53:01,988 - INFO - envs.py:47 - Loaded .env file for image_scoring at /home/dustin_t_nguyen/imagescoring/.env
+2025-10-28 18:53:02,232 - INFO - google_llm.py:93 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2025-10-28 18:53:02,232 - INFO - models.py:6756 - AFC is enabled with max remote calls: 10.
+2025-10-28 18:53:02,501 - ERROR - fast_api.py:928 - Error in event_generator: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'Permission denied on resource project CMPE297-Homework4.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'CONSUMER_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'aiplatform.googleapis.com', 'consumer': 'projects/CMPE297-Homework4', 'containerInfo': 'CMPE297-Homework4'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'Permission denied on resource project CMPE297-Homework4.'}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Google developers console', 'url': 'https://console.developers.google.com'}]}]}}
+Traceback (most recent call last):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/cli/fast_api.py", line 916, in event_generator
+    async for event in runner.run_async(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/runners.py", line 233, in run_async
+    async for event in self._exec_with_plugin(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/runners.py", line 273, in _exec_with_plugin
+    async for event in execute_fn(invocation_context):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/runners.py", line 230, in execute
+    async for event in ctx.agent.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 209, in run_async
+    async for event in self._run_async_impl(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/loop_agent.py", line 57, in _run_async_impl
+    async for event in sub_agent.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 209, in run_async
+    async for event in self._run_async_impl(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/sequential_agent.py", line 41, in _run_async_impl
+    async for event in sub_agent.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 209, in run_async
+    async for event in self._run_async_impl(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/agents/llm_agent.py", line 283, in _run_async_impl
+    async for event in self._llm_flow.run_async(ctx):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 290, in run_async
+    async for event in self._run_one_step_async(invocation_context):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 318, in _run_one_step_async
+    async for llm_response in self._call_llm_async(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 556, in _call_llm_async
+    async for llm_response in llm.generate_content_async(
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 177, in generate_content_async
+    response = await self.api_client.aio.models.generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/models.py", line 6762, in generate_content
+    response = await self._generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/models.py", line 5597, in _generate_content
+    response = await self._api_client.async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1348, in async_request
+    result = await self._async_request(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1293, in _async_request
+    return await self._async_retry(  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/__init__.py", line 420, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/__init__.py", line 187, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1238, in _async_request_once
+    await errors.APIError.raise_for_async_response(response)
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/genai/errors.py", line 166, in raise_for_async_response
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'Permission denied on resource project CMPE297-Homework4.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'CONSUMER_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'aiplatform.googleapis.com', 'consumer': 'projects/CMPE297-Homework4', 'containerInfo': 'CMPE297-Homework4'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'Permission denied on resource project CMPE297-Homework4.'}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Google developers console', 'url': 'https://console.developers.google.com'}]}]}}
+INFO:     127.0.0.1:40580 - "GET /apps/image_scoring/users/user/sessions/18aac073-ea72-4e66-9b15-3268fc0dddef HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40580 - "GET /debug/trace/session/18aac073-ea72-4e66-9b15-3268fc0dddef HTTP/1.1" 200 OK
+^CINFO:     Shutting down
+INFO:     Waiting for application shutdown.
+
++-----------------------------------------------------------------------------+
+| ADK Web Server shutting down...                                             |
++-----------------------------------------------------------------------------+
+
+INFO:     Application shutdown complete.
+INFO:     Finished server process [2843]
+
+Aborted!
+^C
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ ^C
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ export GOOGLE_CLOUD_LOCATION='us-central1'
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ export GOOGLE_CLOUD_PROJECT=CMPE297-Homework4
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ pip install poetry-plugin-export
+Requirement already satisfied: poetry-plugin-export in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (1.9.0)
+Requirement already satisfied: poetry<3.0.0,>=2.0.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry-plugin-export) (2.2.1)
+Requirement already satisfied: poetry-core<3.0.0,>=1.7.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry-plugin-export) (2.2.1)
+Requirement already satisfied: build<2.0.0,>=1.2.1 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (1.3.0)
+Requirement already satisfied: cachecontrol<0.15.0,>=0.14.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from cachecontrol[filecache]<0.15.0,>=0.14.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (0.14.3)
+Requirement already satisfied: cleo<3.0.0,>=2.1.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (2.1.0)
+Requirement already satisfied: dulwich<0.25.0,>=0.24.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (0.24.7)
+Requirement already satisfied: fastjsonschema<3.0.0,>=2.18.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (2.21.2)
+Requirement already satisfied: findpython<0.8.0,>=0.6.2 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (0.7.0)
+Requirement already satisfied: installer<0.8.0,>=0.7.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (0.7.0)
+Requirement already satisfied: keyring<26.0.0,>=25.1.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (25.6.0)
+Requirement already satisfied: packaging>=24.2 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (25.0)
+Requirement already satisfied: pbs-installer<2026.0.0,>=2025.1.6 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (2025.10.14)
+Requirement already satisfied: pkginfo<2.0,>=1.12 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (1.12.1.2)
+Requirement already satisfied: platformdirs<5,>=3.0.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (4.5.0)
+Requirement already satisfied: pyproject-hooks<2.0.0,>=1.0.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (1.2.0)
+Requirement already satisfied: requests<3.0,>=2.26 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (2.32.5)
+Requirement already satisfied: requests-toolbelt<2.0.0,>=1.0.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (1.0.0)
+Requirement already satisfied: shellingham<2.0,>=1.5 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (1.5.4)
+Requirement already satisfied: tomlkit<1.0.0,>=0.11.4 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (0.13.3)
+Requirement already satisfied: trove-classifiers>=2022.5.19 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (2025.9.11.17)
+Requirement already satisfied: virtualenv>=20.26.6 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from poetry<3.0.0,>=2.0.0->poetry-plugin-export) (20.35.3)
+Requirement already satisfied: msgpack<2.0.0,>=0.5.2 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from cachecontrol<0.15.0,>=0.14.0->cachecontrol[filecache]<0.15.0,>=0.14.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (1.1.2)
+Requirement already satisfied: filelock>=3.8.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from cachecontrol[filecache]<0.15.0,>=0.14.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (3.20.0)
+Requirement already satisfied: crashtest<0.5.0,>=0.4.1 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from cleo<3.0.0,>=2.1.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (0.4.1)
+Requirement already satisfied: rapidfuzz<4.0.0,>=3.0.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from cleo<3.0.0,>=2.1.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (3.14.1)
+Requirement already satisfied: urllib3>=2.2.2 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from dulwich<0.25.0,>=0.24.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (2.5.0)
+Requirement already satisfied: SecretStorage>=3.2 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from keyring<26.0.0,>=25.1.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (3.4.0)
+Requirement already satisfied: jeepney>=0.4.2 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from keyring<26.0.0,>=25.1.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (0.9.0)
+Requirement already satisfied: jaraco.classes in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from keyring<26.0.0,>=25.1.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (3.4.0)
+Requirement already satisfied: jaraco.functools in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from keyring<26.0.0,>=25.1.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (4.3.0)
+Requirement already satisfied: jaraco.context in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from keyring<26.0.0,>=25.1.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (6.0.1)
+Requirement already satisfied: httpx<1,>=0.27.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (0.28.1)
+Requirement already satisfied: zstandard>=0.21.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (0.25.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from requests<3.0,>=2.26->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (3.4.4)
+Requirement already satisfied: idna<4,>=2.5 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from requests<3.0,>=2.26->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (3.11)
+Requirement already satisfied: certifi>=2017.4.17 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from requests<3.0,>=2.26->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (2025.10.5)
+Requirement already satisfied: distlib<1,>=0.3.7 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from virtualenv>=20.26.6->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (0.4.0)
+Requirement already satisfied: anyio in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (4.11.0)
+Requirement already satisfied: httpcore==1.* in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (1.0.9)
+Requirement already satisfied: h11>=0.16 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from httpcore==1.*->httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (0.16.0)
+Requirement already satisfied: cryptography>=2.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from SecretStorage>=3.2->keyring<26.0.0,>=25.1.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (46.0.3)
+Requirement already satisfied: more-itertools in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from jaraco.classes->keyring<26.0.0,>=25.1.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (10.8.0)
+Requirement already satisfied: cffi>=2.0.0 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from cryptography>=2.0->SecretStorage>=3.2->keyring<26.0.0,>=25.1.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (2.0.0)
+Requirement already satisfied: sniffio>=1.1 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from anyio->httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (1.3.1)
+Requirement already satisfied: typing_extensions>=4.5 in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from anyio->httpx<1,>=0.27.0->pbs-installer[download,install]<2026.0.0,>=2025.1.6->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (4.15.0)
+Requirement already satisfied: pycparser in /home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages (from cffi>=2.0.0->cryptography>=2.0->SecretStorage>=3.2->keyring<26.0.0,>=25.1.0->poetry<3.0.0,>=2.0.0->poetry-plugin-export) (2.23)
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ poetry export -f requirements.txt --output requirements.txt --without-hashes
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ poetry build
+Building image-scoring (0.1.0)
+Building sdist
+  - Building sdist
+  - Built image_scoring-0.1.0.tar.gz
+Building wheel
+  - Building wheel
+  - Built image_scoring-0.1.0-py3-none-any.whl
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ python3 -m image_scoring.deploy
+Deploying google.adk.agents.Agent as an application.
+Identified the following requirements: {'google-cloud-aiplatform': '1.122.0', 'cloudpickle': '3.1.1', 'pydantic': '2.12.3'}
+The final list of requirements: ['absl-py==2.3.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'aiohappyeyeballs==2.6.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'aiohttp==3.13.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'aiosignal==1.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'annotated-doc==0.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'annotated-types==0.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'anyio==4.11.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'async-timeout==5.0.1 ; python_version == "3.10"\n', 'attrs==25.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'authlib==1.6.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'cachetools==6.2.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'certifi==2025.10.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'cffi==2.0.0 ; python_version >= "3.10" and python_version < "4.0" and platform_python_implementation != "PyPy"\n', 'charset-normalizer==3.4.4 ; python_version >= "3.10" and python_version < "4.0"\n', 'click==8.3.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'cloudpickle==3.1.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'colorama==0.4.6 ; python_version >= "3.10" and python_version < "4.0" and platform_system == "Windows"\n', 'cryptography==46.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'distro==1.9.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'docstring-parser==0.17.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'exceptiongroup==1.3.0 ; python_version == "3.10"\n', 'fastapi==0.120.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'fastuuid==0.14.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'filelock==3.20.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'frozenlist==1.8.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'fsspec==2025.9.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-adk==1.8.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-api-core==2.28.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-api-python-client==2.185.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-auth-httplib2==0.2.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-auth==2.42.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-aiplatform==1.122.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-appengine-logging==1.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-audit-log==0.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-bigquery==3.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-core==2.4.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-logging==3.12.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-resource-manager==1.15.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-secret-manager==2.25.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-speech==2.34.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-storage==2.19.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-trace==1.17.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-crc32c==1.7.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-genai==1.46.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-resumable-media==2.7.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'googleapis-common-protos==1.71.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'graphviz==0.21 ; python_version >= "3.10" and python_version < "4.0"\n', 'greenlet==3.2.4 ; python_version >= "3.10" and python_version < "4.0" and (platform_machine == "aarch64" or platform_machine == "ppc64le" or platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "win32" or platform_machine == "WIN32")\n', 'grpc-google-iam-v1==0.14.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'grpcio-status==1.76.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'grpcio==1.76.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'h11==0.16.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'hf-xet==1.2.0 ; python_version >= "3.10" and python_version < "4.0" and (platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "arm64" or platform_machine == "aarch64")\n', 'httpcore==1.0.9 ; python_version >= "3.10" and python_version < "4.0"\n', 'httplib2==0.31.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'httpx-sse==0.4.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'httpx==0.28.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'huggingface-hub==1.0.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'idna==3.11 ; python_version >= "3.10" and python_version < "4.0"\n', 'importlib-metadata==8.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'jinja2==3.1.6 ; python_version >= "3.10" and python_version < "4.0"\n', 'jiter==0.11.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'joblib==1.5.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'jsonschema-specifications==2025.9.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'jsonschema==4.25.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'litellm==1.76.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'markupsafe==3.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'mcp==1.19.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'multidict==6.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'nltk==3.9.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'numpy==2.2.6 ; python_version == "3.10"\n', 'numpy==2.3.4 ; python_version >= "3.11" and python_version < "4.0"\n', 'openai==2.6.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-api==1.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-exporter-gcp-trace==1.10.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-instrumentation-google-genai==0.4b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-instrumentation==0.59b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-resourcedetector-gcp==1.10.0a0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-sdk==1.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-semantic-conventions==0.59b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-util-genai==0.2b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'packaging==25.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'pandas==2.3.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'pillow==10.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'propcache==0.4.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'proto-plus==1.26.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'protobuf==6.33.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'pyasn1-modules==0.4.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'pyasn1==0.6.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'pycparser==2.23 ; python_version >= "3.10" and python_version < "4.0" and implementation_name != "PyPy" and platform_python_implementation != "PyPy"\n', 'pydantic-core==2.41.4 ; python_version >= "3.10" and python_version < "4.0"\n', 'pydantic-settings==2.11.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'pydantic==2.12.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'pyparsing==3.2.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'python-dateutil==2.9.0.post0 ; python_version >= "3.10" and python_version < "4.0"\n', 'python-dotenv==1.2.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'python-multipart==0.0.20 ; python_version >= "3.10" and python_version < "4.0"\n', 'pytz==2025.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'pywin32==311 ; python_version >= "3.10" and python_version < "4.0" and sys_platform == "win32"\n', 'pyyaml==6.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'referencing==0.37.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'regex==2025.10.23 ; python_version >= "3.10" and python_version < "4.0"\n', 'requests==2.32.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'rouge-score==0.1.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'rpds-py==0.28.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'rsa==4.9.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'ruamel-yaml-clib==0.2.14 ; python_version >= "3.10" and python_version <= "3.13" and platform_python_implementation == "CPython"\n', 'ruamel-yaml==0.18.16 ; python_version >= "3.10" and python_version < "4.0"\n', 'scikit-learn==1.5.2 ; python_version == "3.10"\n', 'scikit-learn==1.7.2 ; python_version >= "3.11" and python_version < "4.0"\n', 'scipy==1.15.3 ; python_version == "3.10"\n', 'scipy==1.16.3 ; python_version >= "3.11" and python_version < "4.0"\n', 'shapely==2.1.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'shellingham==1.5.4 ; python_version >= "3.10" and python_version < "4.0"\n', 'six==1.17.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'sniffio==1.3.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'sqlalchemy==2.0.44 ; python_version >= "3.10" and python_version < "4.0"\n', 'sse-starlette==3.0.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'starlette==0.49.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'tabulate==0.9.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'tenacity==9.1.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'threadpoolctl==3.6.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'tiktoken==0.12.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'tokenizers==0.22.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'tqdm==4.67.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'typer-slim==0.20.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'typing-extensions==4.15.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'typing-inspection==0.4.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'tzdata==2025.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'tzlocal==5.3.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'uritemplate==4.2.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'urllib3==2.5.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'uvicorn==0.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'watchdog==6.0.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'websockets==15.0.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'wrapt==1.17.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'yarl==1.22.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'zipp==3.23.0 ; python_version >= "3.10" and python_version < "4.0"\n', './dist/image_scoring-0.1.0-py3-none-any.whl']
+Using bucket dabucket212
+Wrote to gs://dabucket212/agent_engine/agent_engine.pkl
+Writing to gs://dabucket212/agent_engine/requirements.txt
+Creating in-memory tarfile of extra_packages
+Writing to gs://dabucket212/agent_engine/dependencies.tar.gz
+Traceback (most recent call last):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 75, in error_remapped_callable
+    return callable_(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_interceptor.py", line 276, in __call__
+    response, ignored_call = self._with_call(
+                             ^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_interceptor.py", line 331, in _with_call
+    return call.result(), call
+           ^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_channel.py", line 438, in result
+    raise self
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_interceptor.py", line 314, in continuation
+    response, call = self._thunk(new_method).with_call(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_channel.py", line 1180, in with_call
+    return _end_unary_response_blocking(state, call, True, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_channel.py", line 996, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+        status = StatusCode.PERMISSION_DENIED
+        details = "Permission denied on resource project CMPE297-Homework4."
+        debug_error_string = "UNKNOWN:Error received from peer ipv4:74.125.142.95:443 {grpc_status:7, grpc_message:"Permission denied on resource project CMPE297-Homework4."}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/dustin_t_nguyen/imagescoring/multiagenthandson/image_scoring/deploy.py", line 19, in <module>
+    remote_app = agent_engines.create(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/vertexai/agent_engines/__init__.py", line 194, in create
+    return AgentEngine.create(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/vertexai/agent_engines/_agent_engines.py", line 604, in create
+    operation_future = sdk_resource.api_client.create_reasoning_engine(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/cloud/aiplatform_v1/services/reasoning_engine_service/client.py", line 918, in create_reasoning_engine
+    response = rpc(
+               ^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 77, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.PermissionDenied: 403 Permission denied on resource project CMPE297-Homework4. [reason: "CONSUMER_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "aiplatform.googleapis.com"
+}
+metadata {
+  key: "containerInfo"
+  value: "CMPE297-Homework4"
+}
+metadata {
+  key: "consumer"
+  value: "projects/CMPE297-Homework4"
+}
+, locale: "en-US"
+message: "Permission denied on resource project CMPE297-Homework4."
+, links {
+  description: "Google developers console"
+  url: "https://console.developers.google.com"
+}
+]
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ python3 -m image_scoring.deploy
+Deploying google.adk.agents.Agent as an application.
+Identified the following requirements: {'google-cloud-aiplatform': '1.122.0', 'cloudpickle': '3.1.1', 'pydantic': '2.12.3'}
+The final list of requirements: ['absl-py==2.3.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'aiohappyeyeballs==2.6.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'aiohttp==3.13.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'aiosignal==1.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'annotated-doc==0.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'annotated-types==0.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'anyio==4.11.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'async-timeout==5.0.1 ; python_version == "3.10"\n', 'attrs==25.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'authlib==1.6.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'cachetools==6.2.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'certifi==2025.10.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'cffi==2.0.0 ; python_version >= "3.10" and python_version < "4.0" and platform_python_implementation != "PyPy"\n', 'charset-normalizer==3.4.4 ; python_version >= "3.10" and python_version < "4.0"\n', 'click==8.3.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'cloudpickle==3.1.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'colorama==0.4.6 ; python_version >= "3.10" and python_version < "4.0" and platform_system == "Windows"\n', 'cryptography==46.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'distro==1.9.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'docstring-parser==0.17.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'exceptiongroup==1.3.0 ; python_version == "3.10"\n', 'fastapi==0.120.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'fastuuid==0.14.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'filelock==3.20.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'frozenlist==1.8.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'fsspec==2025.9.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-adk==1.8.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-api-core==2.28.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-api-python-client==2.185.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-auth-httplib2==0.2.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-auth==2.42.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-aiplatform==1.122.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-appengine-logging==1.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-audit-log==0.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-bigquery==3.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-core==2.4.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-logging==3.12.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-resource-manager==1.15.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-secret-manager==2.25.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-speech==2.34.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-storage==2.19.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-trace==1.17.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-crc32c==1.7.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-genai==1.46.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-resumable-media==2.7.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'googleapis-common-protos==1.71.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'graphviz==0.21 ; python_version >= "3.10" and python_version < "4.0"\n', 'greenlet==3.2.4 ; python_version >= "3.10" and python_version < "4.0" and (platform_machine == "aarch64" or platform_machine == "ppc64le" or platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "win32" or platform_machine == "WIN32")\n', 'grpc-google-iam-v1==0.14.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'grpcio-status==1.76.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'grpcio==1.76.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'h11==0.16.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'hf-xet==1.2.0 ; python_version >= "3.10" and python_version < "4.0" and (platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "arm64" or platform_machine == "aarch64")\n', 'httpcore==1.0.9 ; python_version >= "3.10" and python_version < "4.0"\n', 'httplib2==0.31.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'httpx-sse==0.4.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'httpx==0.28.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'huggingface-hub==1.0.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'idna==3.11 ; python_version >= "3.10" and python_version < "4.0"\n', 'importlib-metadata==8.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'jinja2==3.1.6 ; python_version >= "3.10" and python_version < "4.0"\n', 'jiter==0.11.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'joblib==1.5.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'jsonschema-specifications==2025.9.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'jsonschema==4.25.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'litellm==1.76.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'markupsafe==3.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'mcp==1.19.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'multidict==6.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'nltk==3.9.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'numpy==2.2.6 ; python_version == "3.10"\n', 'numpy==2.3.4 ; python_version >= "3.11" and python_version < "4.0"\n', 'openai==2.6.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-api==1.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-exporter-gcp-trace==1.10.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-instrumentation-google-genai==0.4b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-instrumentation==0.59b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-resourcedetector-gcp==1.10.0a0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-sdk==1.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-semantic-conventions==0.59b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-util-genai==0.2b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'packaging==25.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'pandas==2.3.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'pillow==10.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'propcache==0.4.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'proto-plus==1.26.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'protobuf==6.33.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'pyasn1-modules==0.4.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'pyasn1==0.6.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'pycparser==2.23 ; python_version >= "3.10" and python_version < "4.0" and implementation_name != "PyPy" and platform_python_implementation != "PyPy"\n', 'pydantic-core==2.41.4 ; python_version >= "3.10" and python_version < "4.0"\n', 'pydantic-settings==2.11.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'pydantic==2.12.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'pyparsing==3.2.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'python-dateutil==2.9.0.post0 ; python_version >= "3.10" and python_version < "4.0"\n', 'python-dotenv==1.2.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'python-multipart==0.0.20 ; python_version >= "3.10" and python_version < "4.0"\n', 'pytz==2025.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'pywin32==311 ; python_version >= "3.10" and python_version < "4.0" and sys_platform == "win32"\n', 'pyyaml==6.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'referencing==0.37.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'regex==2025.10.23 ; python_version >= "3.10" and python_version < "4.0"\n', 'requests==2.32.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'rouge-score==0.1.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'rpds-py==0.28.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'rsa==4.9.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'ruamel-yaml-clib==0.2.14 ; python_version >= "3.10" and python_version <= "3.13" and platform_python_implementation == "CPython"\n', 'ruamel-yaml==0.18.16 ; python_version >= "3.10" and python_version < "4.0"\n', 'scikit-learn==1.5.2 ; python_version == "3.10"\n', 'scikit-learn==1.7.2 ; python_version >= "3.11" and python_version < "4.0"\n', 'scipy==1.15.3 ; python_version == "3.10"\n', 'scipy==1.16.3 ; python_version >= "3.11" and python_version < "4.0"\n', 'shapely==2.1.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'shellingham==1.5.4 ; python_version >= "3.10" and python_version < "4.0"\n', 'six==1.17.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'sniffio==1.3.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'sqlalchemy==2.0.44 ; python_version >= "3.10" and python_version < "4.0"\n', 'sse-starlette==3.0.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'starlette==0.49.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'tabulate==0.9.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'tenacity==9.1.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'threadpoolctl==3.6.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'tiktoken==0.12.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'tokenizers==0.22.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'tqdm==4.67.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'typer-slim==0.20.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'typing-extensions==4.15.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'typing-inspection==0.4.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'tzdata==2025.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'tzlocal==5.3.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'uritemplate==4.2.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'urllib3==2.5.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'uvicorn==0.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'watchdog==6.0.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'websockets==15.0.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'wrapt==1.17.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'yarl==1.22.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'zipp==3.23.0 ; python_version >= "3.10" and python_version < "4.0"\n', './dist/image_scoring-0.1.0-py3-none-any.whl']
+Using bucket dabucket212
+Wrote to gs://dabucket212/agent_engine/agent_engine.pkl
+Writing to gs://dabucket212/agent_engine/requirements.txt
+Creating in-memory tarfile of extra_packages
+Writing to gs://dabucket212/agent_engine/dependencies.tar.gz
+Traceback (most recent call last):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 75, in error_remapped_callable
+    return callable_(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_interceptor.py", line 276, in __call__
+    response, ignored_call = self._with_call(
+                             ^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_interceptor.py", line 331, in _with_call
+    return call.result(), call
+           ^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_channel.py", line 438, in result
+    raise self
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_interceptor.py", line 314, in continuation
+    response, call = self._thunk(new_method).with_call(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_channel.py", line 1180, in with_call
+    return _end_unary_response_blocking(state, call, True, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_channel.py", line 996, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+        status = StatusCode.PERMISSION_DENIED
+        details = "Permission denied on resource project CMPE297-Homework4."
+        debug_error_string = "UNKNOWN:Error received from peer ipv4:142.250.107.95:443 {grpc_message:"Permission denied on resource project CMPE297-Homework4.", grpc_status:7}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/dustin_t_nguyen/imagescoring/multiagenthandson/image_scoring/deploy.py", line 19, in <module>
+    remote_app = agent_engines.create(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/vertexai/agent_engines/__init__.py", line 194, in create
+    return AgentEngine.create(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/vertexai/agent_engines/_agent_engines.py", line 604, in create
+    operation_future = sdk_resource.api_client.create_reasoning_engine(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/cloud/aiplatform_v1/services/reasoning_engine_service/client.py", line 918, in create_reasoning_engine
+    response = rpc(
+               ^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 77, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.PermissionDenied: 403 Permission denied on resource project CMPE297-Homework4. [reason: "CONSUMER_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "aiplatform.googleapis.com"
+}
+metadata {
+  key: "containerInfo"
+  value: "CMPE297-Homework4"
+}
+metadata {
+  key: "consumer"
+  value: "projects/CMPE297-Homework4"
+}
+, locale: "en-US"
+message: "Permission denied on resource project CMPE297-Homework4."
+, links {
+  description: "Google developers console"
+  url: "https://console.developers.google.com"
+}
+]
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ ^C
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ gcloud services enable aiplatform.googleapis.com storage.googleapis.com iam.googleapis.com \
+  serviceusage.googleapis.com compute.googleapis.com artifactregistry.googleapis.com cloudbuild.googleapis.com
+Operation "operations/acat.p2-195935768771-7086ee67-fd91-42e9-9906-522fce98d041" finished successfully.
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ gcloud auth login
+gcloud auth application-default login
+
+You are already authenticated with gcloud when running
+inside the Cloud Shell and so do not need to run this
+command. Do you wish to proceed anyway?
+
+Do you want to continue (Y/n)?  Y
+
+Go to the following link in your browser, and complete the sign-in prompts:
+
+    https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=32555940559.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fsdk.cloud.google.com%2Fauthcode.html&scope=openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fappengine.admin+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fsqlservice.login+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcompute+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Faccounts.reauth&state=f1OTWoQ1JLIakOPN3JxzIAF5oDJrvN&prompt=consent&token_usage=remote&access_type=offline&code_challenge=-8SwWIG1JAolDpq1OTyAqJG37qe0rxTFfMNTu7sqLCw&code_challenge_method=S256
+
+Once finished, enter the verification code provided in your browser: 5256
+ERROR: There was a problem with web authentication.
+ERROR: (gcloud.auth.login) (invalid_grant) Malformed auth code.
+
+You are running on a Google Compute Engine virtual machine.
+The service credentials associated with this virtual machine
+will automatically be used by Application Default
+Credentials, so it is not necessary to use this command.
+
+If you decide to proceed anyway, your user credentials may be visible
+to others with access to this virtual machine. Are you sure you want
+to authenticate with your personal account?
+
+Do you want to continue (Y/n)?  Y
+
+Go to the following link in your browser, and complete the sign-in prompts:
+
+    https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=764086051850-6qr4p6gpi6hn506pt8ejuq83di341hur.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fsdk.cloud.google.com%2Fapplicationdefaultauthcode.html&scope=openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fsqlservice.login&state=Mt7HodppXGxOpsK3PxbIS3gZVIBasv&prompt=consent&token_usage=remote&access_type=offline&code_challenge=QDkGO3Lga_IxMiLbmsFxcelgRU1mC7lltxRuAYVIar0&code_challenge_method=S256
+
+Once finished, enter the verification code provided in your browser: 4/0Ab32j90mvTfp6sYEbkB89xhKPd10acr5ZzJuOVnd_PhcoD475Px7ZhBCS9xIusGM6iE02w
+ERROR: gcloud crashed (Warning): Scope has changed from "https://www.googleapis.com/auth/sqlservice.login https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/cloud-platform openid" to "openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/cloud-platform".
+
+If you would like to report this issue, please run the following command:
+  gcloud feedback
+
+To check gcloud for common problems, please run the following command:
+  gcloud info --run-diagnostics
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ gcloud auth login
+
+You are already authenticated with gcloud when running
+inside the Cloud Shell and so do not need to run this
+command. Do you wish to proceed anyway?
+
+Do you want to continue (Y/n)?  Y
+
+Go to the following link in your browser, and complete the sign-in prompts:
+
+    https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=32555940559.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fsdk.cloud.google.com%2Fauthcode.html&scope=openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fappengine.admin+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fsqlservice.login+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcompute+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Faccounts.reauth&state=lxQl5ri0hekCJZbXpSzkI8PkJWPo3a&prompt=consent&token_usage=remote&access_type=offline&code_challenge=e3-4IMfgxkNDg4icjg4IDsGk-6RYN-KUduMghXWGGKM&code_challenge_method=S256
+
+Once finished, enter the verification code provided in your browser:  4/0Ab32j93DUjiLTXmDgwcvwzL3PZdHukdIAFlROUQiXBt6jCXoqRUJoBH40d8UoXOlSD8P1A 
+
+You are now logged in as [dustin.t.nguyen@sjsu.edu].
+Your current project is [cmpe297-homework4].  You can change this setting by running:
+  $ gcloud config set project PROJECT_ID
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ gcloud auth application-default login
+
+You are running on a Google Compute Engine virtual machine.
+The service credentials associated with this virtual machine
+will automatically be used by Application Default
+Credentials, so it is not necessary to use this command.
+
+If you decide to proceed anyway, your user credentials may be visible
+to others with access to this virtual machine. Are you sure you want
+to authenticate with your personal account?
+
+Do you want to continue (Y/n)?  Y
+
+Go to the following link in your browser, and complete the sign-in prompts:
+
+    https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=764086051850-6qr4p6gpi6hn506pt8ejuq83di341hur.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fsdk.cloud.google.com%2Fapplicationdefaultauthcode.html&scope=openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fsqlservice.login&state=RCRHGNh5MQ5pL4Nk7hoUuEBDAAan2e&prompt=consent&token_usage=remote&access_type=offline&code_challenge=U7eSIefvtdwFceatJK55f9K4kjUa80DqyhmVK07nf8o&code_challenge_method=S256
+
+Once finished, enter the verification code provided in your browser:  4/0Ab32j92G_aHowlUECHTy6OlEXR7QMopc2I45hvaJuG24YmJjccADJ4mwDRJWc7jez7V-WA 
+
+Credentials saved to file: [/tmp/tmp.76bNPwPbgu/application_default_credentials.json]
+
+These credentials will be used by any library that requests Application Default Credentials (ADC).
+API [cloudresourcemanager.googleapis.com] not enabled on project [cmpe297-homework4]. Would you like to enable and retry (this will take a few minutes)? (y/N)?  Y       
+
+Enabling service [cloudresourcemanager.googleapis.com] on project [cmpe297-homework4]...
+Operation "operations/acat.p2-195935768771-1f2da94f-a380-45e9-8be2-7461de730771" finished successfully.
+
+Quota project "cmpe297-homework4" was added to ADC which can be used by Google client libraries for billing and quota. Note that some services may still bill the project owning the resource.
+(pythonenv) dustin_t_nguyen@cloudshell:~/imagescoring/multiagenthandson (cmpe297-homework4)$ python3 -m image_scoring.deploy
+Deploying google.adk.agents.Agent as an application.
+Identified the following requirements: {'pydantic': '2.12.3', 'google-cloud-aiplatform': '1.122.0', 'cloudpickle': '3.1.1'}
+The final list of requirements: ['absl-py==2.3.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'aiohappyeyeballs==2.6.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'aiohttp==3.13.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'aiosignal==1.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'annotated-doc==0.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'annotated-types==0.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'anyio==4.11.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'async-timeout==5.0.1 ; python_version == "3.10"\n', 'attrs==25.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'authlib==1.6.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'cachetools==6.2.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'certifi==2025.10.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'cffi==2.0.0 ; python_version >= "3.10" and python_version < "4.0" and platform_python_implementation != "PyPy"\n', 'charset-normalizer==3.4.4 ; python_version >= "3.10" and python_version < "4.0"\n', 'click==8.3.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'cloudpickle==3.1.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'colorama==0.4.6 ; python_version >= "3.10" and python_version < "4.0" and platform_system == "Windows"\n', 'cryptography==46.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'distro==1.9.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'docstring-parser==0.17.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'exceptiongroup==1.3.0 ; python_version == "3.10"\n', 'fastapi==0.120.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'fastuuid==0.14.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'filelock==3.20.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'frozenlist==1.8.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'fsspec==2025.9.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-adk==1.8.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-api-core==2.28.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-api-python-client==2.185.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-auth-httplib2==0.2.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-auth==2.42.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-aiplatform==1.122.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-appengine-logging==1.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-audit-log==0.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-bigquery==3.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-core==2.4.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-logging==3.12.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-resource-manager==1.15.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-secret-manager==2.25.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-speech==2.34.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-storage==2.19.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-cloud-trace==1.17.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-crc32c==1.7.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-genai==1.46.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'google-resumable-media==2.7.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'googleapis-common-protos==1.71.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'graphviz==0.21 ; python_version >= "3.10" and python_version < "4.0"\n', 'greenlet==3.2.4 ; python_version >= "3.10" and python_version < "4.0" and (platform_machine == "aarch64" or platform_machine == "ppc64le" or platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "win32" or platform_machine == "WIN32")\n', 'grpc-google-iam-v1==0.14.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'grpcio-status==1.76.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'grpcio==1.76.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'h11==0.16.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'hf-xet==1.2.0 ; python_version >= "3.10" and python_version < "4.0" and (platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "arm64" or platform_machine == "aarch64")\n', 'httpcore==1.0.9 ; python_version >= "3.10" and python_version < "4.0"\n', 'httplib2==0.31.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'httpx-sse==0.4.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'httpx==0.28.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'huggingface-hub==1.0.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'idna==3.11 ; python_version >= "3.10" and python_version < "4.0"\n', 'importlib-metadata==8.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'jinja2==3.1.6 ; python_version >= "3.10" and python_version < "4.0"\n', 'jiter==0.11.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'joblib==1.5.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'jsonschema-specifications==2025.9.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'jsonschema==4.25.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'litellm==1.76.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'markupsafe==3.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'mcp==1.19.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'multidict==6.7.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'nltk==3.9.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'numpy==2.2.6 ; python_version == "3.10"\n', 'numpy==2.3.4 ; python_version >= "3.11" and python_version < "4.0"\n', 'openai==2.6.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-api==1.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-exporter-gcp-trace==1.10.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-instrumentation-google-genai==0.4b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-instrumentation==0.59b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-resourcedetector-gcp==1.10.0a0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-sdk==1.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-semantic-conventions==0.59b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'opentelemetry-util-genai==0.2b0 ; python_version >= "3.10" and python_version < "4.0"\n', 'packaging==25.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'pandas==2.3.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'pillow==10.4.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'propcache==0.4.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'proto-plus==1.26.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'protobuf==6.33.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'pyasn1-modules==0.4.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'pyasn1==0.6.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'pycparser==2.23 ; python_version >= "3.10" and python_version < "4.0" and implementation_name != "PyPy" and platform_python_implementation != "PyPy"\n', 'pydantic-core==2.41.4 ; python_version >= "3.10" and python_version < "4.0"\n', 'pydantic-settings==2.11.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'pydantic==2.12.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'pyparsing==3.2.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'python-dateutil==2.9.0.post0 ; python_version >= "3.10" and python_version < "4.0"\n', 'python-dotenv==1.2.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'python-multipart==0.0.20 ; python_version >= "3.10" and python_version < "4.0"\n', 'pytz==2025.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'pywin32==311 ; python_version >= "3.10" and python_version < "4.0" and sys_platform == "win32"\n', 'pyyaml==6.0.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'referencing==0.37.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'regex==2025.10.23 ; python_version >= "3.10" and python_version < "4.0"\n', 'requests==2.32.5 ; python_version >= "3.10" and python_version < "4.0"\n', 'rouge-score==0.1.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'rpds-py==0.28.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'rsa==4.9.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'ruamel-yaml-clib==0.2.14 ; python_version >= "3.10" and python_version <= "3.13" and platform_python_implementation == "CPython"\n', 'ruamel-yaml==0.18.16 ; python_version >= "3.10" and python_version < "4.0"\n', 'scikit-learn==1.5.2 ; python_version == "3.10"\n', 'scikit-learn==1.7.2 ; python_version >= "3.11" and python_version < "4.0"\n', 'scipy==1.15.3 ; python_version == "3.10"\n', 'scipy==1.16.3 ; python_version >= "3.11" and python_version < "4.0"\n', 'shapely==2.1.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'shellingham==1.5.4 ; python_version >= "3.10" and python_version < "4.0"\n', 'six==1.17.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'sniffio==1.3.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'sqlalchemy==2.0.44 ; python_version >= "3.10" and python_version < "4.0"\n', 'sse-starlette==3.0.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'starlette==0.49.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'tabulate==0.9.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'tenacity==9.1.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'threadpoolctl==3.6.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'tiktoken==0.12.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'tokenizers==0.22.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'tqdm==4.67.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'typer-slim==0.20.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'typing-extensions==4.15.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'typing-inspection==0.4.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'tzdata==2025.2 ; python_version >= "3.10" and python_version < "4.0"\n', 'tzlocal==5.3.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'uritemplate==4.2.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'urllib3==2.5.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'uvicorn==0.38.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'watchdog==6.0.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'websockets==15.0.1 ; python_version >= "3.10" and python_version < "4.0"\n', 'wrapt==1.17.3 ; python_version >= "3.10" and python_version < "4.0"\n', 'yarl==1.22.0 ; python_version >= "3.10" and python_version < "4.0"\n', 'zipp==3.23.0 ; python_version >= "3.10" and python_version < "4.0"\n', './dist/image_scoring-0.1.0-py3-none-any.whl']
+Using bucket dabucket212
+Wrote to gs://dabucket212/agent_engine/agent_engine.pkl
+Writing to gs://dabucket212/agent_engine/requirements.txt
+Creating in-memory tarfile of extra_packages
+Writing to gs://dabucket212/agent_engine/dependencies.tar.gz
+Traceback (most recent call last):
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 75, in error_remapped_callable
+    return callable_(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_interceptor.py", line 276, in __call__
+    response, ignored_call = self._with_call(
+                             ^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_interceptor.py", line 331, in _with_call
+    return call.result(), call
+           ^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_channel.py", line 438, in result
+    raise self
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_interceptor.py", line 314, in continuation
+    response, call = self._thunk(new_method).with_call(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_channel.py", line 1180, in with_call
+    return _end_unary_response_blocking(state, call, True, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/grpc/_channel.py", line 996, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+        status = StatusCode.PERMISSION_DENIED
+        details = "Permission denied on resource project CMPE297-Homework4."
+        debug_error_string = "UNKNOWN:Error received from peer ipv4:172.253.117.95:443 {grpc_status:7, grpc_message:"Permission denied on resource project CMPE297-Homework4."}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/dustin_t_nguyen/imagescoring/multiagenthandson/image_scoring/deploy.py", line 19, in <module>
+    remote_app = agent_engines.create(
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/vertexai/agent_engines/__init__.py", line 194, in create
+    return AgentEngine.create(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/vertexai/agent_engines/_agent_engines.py", line 604, in create
+    operation_future = sdk_resource.api_client.create_reasoning_engine(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/cloud/aiplatform_v1/services/reasoning_engine_service/client.py", line 918, in create_reasoning_engine
+    response = rpc(
+               ^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/imagescoring/pythonenv/lib/python3.12/site-packages/google/api_core/grpc_helpers.py", line 77, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.PermissionDenied: 403 Permission denied on resource project CMPE297-Homework4. [reason: "CONSUMER_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "aiplatform.googleapis.com"
+}
+metadata {
+  key: "containerInfo"
+  value: "CMPE297-Homework4"
+}
+metadata {
+  key: "consumer"
+  value: "projects/CMPE297-Homework4"
+}
+, locale: "en-US"
+message: "Permission denied on resource project CMPE297-Homework4."
+, links {
+  description: "Google developers console"
+  url: "https://console.developers.google.com"
+}
+]
