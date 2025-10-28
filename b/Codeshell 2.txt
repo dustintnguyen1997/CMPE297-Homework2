@@ -1,0 +1,359 @@
+Welcome to Cloud Shell! Type "help" to get started, or type "gemini" to try prompting with Gemini CLI.
+Your Cloud Platform project in this session is set to cmpe297-homework2-476500.
+Use `gcloud config set project [PROJECT_ID]` to change to a different project.
+dustin_t_nguyen@cloudshell:~ (cmpe297-homework2-476500)$ cd currency-agent
+dustin_t_nguyen@cloudshell:~/currency-agent (cmpe297-homework2-476500)$ uv run mcp-server/test.server.py
+error: Failed to spawn: `mcp-server/test.server.py`
+  Caused by: No such file or directory (os error 2)
+dustin_t_nguyen@cloudshell:~/currency-agent (cmpe297-homework2-476500)$ uv run mcp-server/test_server.py
+--- 🛠️  Tool found: get_exchange_rate ---
+--- 🪛  Calling get_exchange_rate tool for USD to EUR ---
+--- ✅  Success: {"amount":1.0,"base":"USD","date":"2025-10-27","rates":{"EUR":0.85911}} ---
+dustin_t_nguyen@cloudshell:~/currency-agent (cmpe297-homework2-476500)$ uv run mcp-server/test_server.py
+--- 🛠️  Tool found: get_exchange_rate ---
+--- 🪛  Calling get_exchange_rate tool for USD to EUR ---
+--- ✅  Success: {"amount":1.0,"base":"USD","date":"2025-10-27","rates":{"EUR":0.85911}} ---
+dustin_t_nguyen@cloudshell:~/currency-agent (cmpe297-homework2-476500)$ gcloud run services logs read mcp-server --region us-central1 --limit 5
+2025-10-28 00:10:50 Message: 'Uvicorn running on %s://%s:%d (Press CTRL+C to quit)'
+2025-10-28 00:10:50 Arguments: ('http', '0.0.0.0', '8080')
+dustin_t_nguyen@cloudshell:~/currency-agent (cmpe297-homework2-476500)$ uv run adk web
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/cli/fast_api.py:175: UserWarning: [EXPERIMENTAL] InMemoryCredentialService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  credential_service = InMemoryCredentialService()
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/auth/credential_service/in_memory_credential_service.py:33: UserWarning: [EXPERIMENTAL] BaseCredentialService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  super().__init__()
+INFO:     Started server process [2941]
+INFO:     Waiting for application startup.
+
++-----------------------------------------------------------------------------+
+| ADK Web Server started                                                      |
+|                                                                             |
+| For local testing, access at http://127.0.0.1:8000.                         |
++-----------------------------------------------------------------------------+
+
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57116 - "GET / HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57116 - "GET /dev-ui/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57116 - "GET /dev-ui/chunk-EQDQRRRY.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57116 - "GET /dev-ui/main-W7QZBYAR.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57116 - "GET /dev-ui/polyfills-B6TNHZQ6.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57116 - "GET /dev-ui/styles-4VDSPQ37.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57116 - "GET /dev-ui/assets/config/runtime-config.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57116 - "GET /dev-ui/assets/ADK-512-color.svg HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57116 - "GET /list-apps?relative_path=./ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57116 - "GET /dev-ui/adk_favicon.svg HTTP/1.1" 200 OK
+2025-10-28 00:15:12,716 - INFO - adk_web_server.py:498 - New session created
+INFO:     127.0.0.1:57116 - "POST /apps/currency_agent/users/user/sessions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57116 - "GET /apps/currency_agent/eval_sets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57120 - "GET /apps/currency_agent/eval_results HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57120 - "GET /apps/currency_agent/users/user/sessions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57120 - "GET /apps/currency_agent/users/user/sessions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47922 - "POST /run_sse HTTP/1.1" 200 OK
+2025-10-28 00:15:25,199 - INFO - envs.py:47 - Loaded .env file for currency_agent at /home/dustin_t_nguyen/currency-agent/.env
+2025-10-28 00:15:25,200 - INFO - envs.py:47 - Loaded .env file for currency_agent at /home/dustin_t_nguyen/currency-agent/.env
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/protobuf/runtime_version.py:98: UserWarning: Protobuf gencode version 5.29.3 is exactly one major version older than the runtime version 6.31.1 at a2a.proto. Please update the gencode to avoid compatibility violations in the next runtime release.
+  warnings.warn(
+2025-10-28 00:15:25,519 - INFO - agent.py:22 - --- 🔧 Loading MCP tools from MCP Server... ---
+2025-10-28 00:15:25,519 - INFO - agent.py:23 - --- 🤖 Creating ADK Currency Agent... ---
+/home/dustin_t_nguyen/currency-agent/currency_agent/agent.py:40: UserWarning: [EXPERIMENTAL] to_a2a: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  a2a_app = to_a2a(root_agent, port=10000)
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/a2a/utils/agent_to_a2a.py:88: UserWarning: [EXPERIMENTAL] A2aAgentExecutor: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  agent_executor = A2aAgentExecutor(
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/a2a/utils/agent_to_a2a.py:98: UserWarning: [EXPERIMENTAL] AgentCardBuilder: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  card_builder = AgentCardBuilder(
+2025-10-28 00:15:25,521 - INFO - agent_loader.py:105 - Found root_agent in currency_agent.agent
+2025-10-28 00:15:25,593 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:15:25,593 - INFO - streamable_http.py:134 - Received session ID: ceaa030038ce429d81cf533e59c033c1
+2025-10-28 00:15:25,594 - INFO - streamable_http.py:146 - Negotiated protocol version: 2025-06-18
+2025-10-28 00:15:25,606 - INFO - _client.py:1740 - HTTP Request: GET http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:15:25,607 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 202 Accepted"
+2025-10-28 00:15:25,613 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:88: UserWarning: [EXPERIMENTAL] BaseAuthenticatedTool: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  super().__init__(
+2025-10-28 00:15:25,616 - WARNING - base_authenticated_tool.py:72 - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-10-28 00:15:25,628 - ERROR - adk_web_server.py:1038 - Error in event_generator: Missing key inputs argument! To use the Google AI API, provide (`api_key`) arguments. To use the Google Cloud API, provide (`vertexai`, `project` & `location`) arguments.
+Traceback (most recent call last):
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/cli/adk_web_server.py", line 1028, in event_generator
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 248, in run_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 244, in _run_with_trace
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 288, in _exec_with_plugin
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 238, in execute
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 248, in run_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 238, in _run_with_trace
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/agents/llm_agent.py", line 288, in _run_async_impl
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 401, in run_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 437, in _run_one_step_async
+    async for llm_response in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 761, in _call_llm_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 745, in _call_llm_with_tracing
+    async for llm_response in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 937, in _run_and_handle_error
+    raise model_error
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 921, in _run_and_handle_error
+    async for response in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 110, in generate_content_async
+    await self._preprocess_request(llm_request)
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 317, in _preprocess_request
+    if self._api_backend == GoogleLLMVariant.GEMINI_API:
+       ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/functools.py", line 995, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 227, in _api_backend
+    if self.api_client.vertexai
+       ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/functools.py", line 995, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 216, in api_client
+    return Client(
+           ^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/client.py", line 219, in __init__
+    self._api_client = self._get_api_client(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/client.py", line 265, in _get_api_client
+    return BaseApiClient(
+           ^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/_api_client.py", line 658, in __init__
+    raise ValueError(
+ValueError: Missing key inputs argument! To use the Google AI API, provide (`api_key`) arguments. To use the Google Cloud API, provide (`vertexai`, `project` & `location`) arguments.
+INFO:     127.0.0.1:47922 - "GET /apps/currency_agent/users/user/sessions/43714311-23d0-4b3f-a6f1-e35c4d907039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47922 - "GET /debug/trace/session/43714311-23d0-4b3f-a6f1-e35c4d907039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43484 - "POST /run_sse HTTP/1.1" 200 OK
+2025-10-28 00:15:33,629 - INFO - envs.py:47 - Loaded .env file for currency_agent at /home/dustin_t_nguyen/currency-agent/.env
+2025-10-28 00:15:33,631 - INFO - mcp_session_manager.py:332 - Cleaning up disconnected session: session_no_headers
+2025-10-28 00:15:33,636 - INFO - _client.py:1740 - HTTP Request: DELETE http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:15:33,637 - WARNING - mcp_session_manager.py:336 - Error during disconnected session cleanup: Attempted to exit cancel scope in a different task than it was entered in
+2025-10-28 00:15:33,698 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:15:33,698 - INFO - streamable_http.py:134 - Received session ID: 3c9a910f511345c68a248e2137347d45
+2025-10-28 00:15:33,700 - INFO - streamable_http.py:146 - Negotiated protocol version: 2025-06-18
+2025-10-28 00:15:33,709 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 202 Accepted"
+2025-10-28 00:15:33,710 - INFO - _client.py:1740 - HTTP Request: GET http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:15:33,717 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:15:33,720 - WARNING - base_authenticated_tool.py:72 - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-10-28 00:15:33,725 - ERROR - adk_web_server.py:1038 - Error in event_generator: Missing key inputs argument! To use the Google AI API, provide (`api_key`) arguments. To use the Google Cloud API, provide (`vertexai`, `project` & `location`) arguments.
+Traceback (most recent call last):
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/cli/adk_web_server.py", line 1028, in event_generator
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 248, in run_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 244, in _run_with_trace
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 288, in _exec_with_plugin
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 238, in execute
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 248, in run_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 238, in _run_with_trace
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/agents/llm_agent.py", line 288, in _run_async_impl
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 401, in run_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 437, in _run_one_step_async
+    async for llm_response in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 761, in _call_llm_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 745, in _call_llm_with_tracing
+    async for llm_response in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 937, in _run_and_handle_error
+    raise model_error
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 921, in _run_and_handle_error
+    async for response in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 110, in generate_content_async
+    await self._preprocess_request(llm_request)
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 317, in _preprocess_request
+    if self._api_backend == GoogleLLMVariant.GEMINI_API:
+       ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/functools.py", line 995, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 227, in _api_backend
+    if self.api_client.vertexai
+       ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/functools.py", line 995, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 216, in api_client
+    return Client(
+           ^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/client.py", line 219, in __init__
+    self._api_client = self._get_api_client(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/client.py", line 265, in _get_api_client
+    return BaseApiClient(
+           ^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/_api_client.py", line 658, in __init__
+    raise ValueError(
+ValueError: Missing key inputs argument! To use the Google AI API, provide (`api_key`) arguments. To use the Google Cloud API, provide (`vertexai`, `project` & `location`) arguments.
+INFO:     127.0.0.1:43484 - "GET /debug/trace/session/43714311-23d0-4b3f-a6f1-e35c4d907039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43488 - "GET /apps/currency_agent/users/user/sessions/43714311-23d0-4b3f-a6f1-e35c4d907039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57686 - "POST /run_sse HTTP/1.1" 200 OK
+2025-10-28 00:19:00,861 - INFO - envs.py:47 - Loaded .env file for currency_agent at /home/dustin_t_nguyen/currency-agent/.env
+2025-10-28 00:19:00,863 - INFO - mcp_session_manager.py:332 - Cleaning up disconnected session: session_no_headers
+2025-10-28 00:19:00,867 - INFO - _client.py:1740 - HTTP Request: DELETE http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:00,868 - WARNING - mcp_session_manager.py:336 - Error during disconnected session cleanup: Attempted to exit cancel scope in a different task than it was entered in
+2025-10-28 00:19:00,921 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:00,921 - INFO - streamable_http.py:134 - Received session ID: 0fce2673b9e8409a8535dacaecb74fa7
+2025-10-28 00:19:00,922 - INFO - streamable_http.py:146 - Negotiated protocol version: 2025-06-18
+2025-10-28 00:19:00,930 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 202 Accepted"
+2025-10-28 00:19:00,932 - INFO - _client.py:1740 - HTTP Request: GET http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:00,938 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:00,940 - WARNING - base_authenticated_tool.py:72 - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-10-28 00:19:01,027 - INFO - google_llm.py:112 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2025-10-28 00:19:01,027 - INFO - models.py:8317 - AFC is enabled with max remote calls: 10.
+2025-10-28 00:19:01,297 - INFO - _client.py:1740 - HTTP Request: POST https://us-central1-aiplatform.googleapis.com/v1beta1/projects/$PROJECT_ID/locations/us-central1/publishers/google/models/gemini-2.5-flash:generateContent "HTTP/1.1 403 Forbidden"
+2025-10-28 00:19:01,308 - ERROR - adk_web_server.py:1038 - Error in event_generator: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'Permission denied on resource project $PROJECT_ID.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'CONSUMER_INVALID', 'domain': 'googleapis.com', 'metadata': {'containerInfo': '$PROJECT_ID', 'service': 'aiplatform.googleapis.com', 'consumer': 'projects/$PROJECT_ID'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'Permission denied on resource project $PROJECT_ID.'}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Google developers console', 'url': 'https://console.developers.google.com'}]}]}}
+Traceback (most recent call last):
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/cli/adk_web_server.py", line 1028, in event_generator
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 248, in run_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 244, in _run_with_trace
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 288, in _exec_with_plugin
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/runners.py", line 238, in execute
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 248, in run_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/agents/base_agent.py", line 238, in _run_with_trace
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/agents/llm_agent.py", line 288, in _run_async_impl
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 401, in run_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 437, in _run_one_step_async
+    async for llm_response in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 761, in _call_llm_async
+    async for event in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 745, in _call_llm_with_tracing
+    async for llm_response in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 937, in _run_and_handle_error
+    raise model_error
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/flows/llm_flows/base_llm_flow.py", line 921, in _run_and_handle_error
+    async for response in agen:
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/models/google_llm.py", line 200, in generate_content_async
+    response = await self.api_client.aio.models.generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/models.py", line 8323, in generate_content
+    response = await self._generate_content(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/models.py", line 7080, in _generate_content
+    response = await self._api_client.async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1300, in async_request
+    result = await self._async_request(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1245, in _async_request
+    return await self._async_retry(  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 111, in __call__
+    do = await self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 153, in iter
+    result = await action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/tenacity/_utils.py", line 99, in inner
+    return call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 418, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 185, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/tenacity/asyncio/__init__.py", line 114, in __call__
+    result = await fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1225, in _async_request_once
+    await errors.APIError.raise_for_async_response(client_response)
+  File "/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/genai/errors.py", line 156, in raise_for_async_response
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 403 PERMISSION_DENIED. {'error': {'code': 403, 'message': 'Permission denied on resource project $PROJECT_ID.', 'status': 'PERMISSION_DENIED', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'CONSUMER_INVALID', 'domain': 'googleapis.com', 'metadata': {'containerInfo': '$PROJECT_ID', 'service': 'aiplatform.googleapis.com', 'consumer': 'projects/$PROJECT_ID'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'Permission denied on resource project $PROJECT_ID.'}, {'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Google developers console', 'url': 'https://console.developers.google.com'}]}]}}
+INFO:     127.0.0.1:57686 - "GET /apps/currency_agent/users/user/sessions/43714311-23d0-4b3f-a6f1-e35c4d907039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57686 - "GET /debug/trace/session/43714311-23d0-4b3f-a6f1-e35c4d907039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33770 - "POST /run_sse HTTP/1.1" 200 OK
+2025-10-28 00:19:37,144 - INFO - envs.py:47 - Loaded .env file for currency_agent at /home/dustin_t_nguyen/currency-agent/.env
+2025-10-28 00:19:37,146 - INFO - mcp_session_manager.py:332 - Cleaning up disconnected session: session_no_headers
+2025-10-28 00:19:37,152 - INFO - _client.py:1740 - HTTP Request: DELETE http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:37,153 - WARNING - mcp_session_manager.py:336 - Error during disconnected session cleanup: Attempted to exit cancel scope in a different task than it was entered in
+2025-10-28 00:19:37,206 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:37,206 - INFO - streamable_http.py:134 - Received session ID: b24434417a5642bba048c9a9b9fa61b1
+2025-10-28 00:19:37,207 - INFO - streamable_http.py:146 - Negotiated protocol version: 2025-06-18
+2025-10-28 00:19:37,214 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 202 Accepted"
+2025-10-28 00:19:37,216 - INFO - _client.py:1740 - HTTP Request: GET http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:37,221 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:37,223 - WARNING - base_authenticated_tool.py:72 - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-10-28 00:19:37,307 - INFO - google_llm.py:112 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2025-10-28 00:19:37,308 - INFO - models.py:8317 - AFC is enabled with max remote calls: 10.
+2025-10-28 00:19:38,818 - INFO - _client.py:1740 - HTTP Request: POST https://us-central1-aiplatform.googleapis.com/v1beta1/projects/cmpe297-homework2-476500/locations/us-central1/publishers/google/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-28 00:19:38,820 - INFO - google_llm.py:205 - Response received from the model.
+2025-10-28 00:19:38,820 - WARNING - types.py:5481 - Warning: there are non-text parts in the response: ['thought_signature', 'function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-10-28 00:19:38,828 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:40,288 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:40,290 - WARNING - base_authenticated_tool.py:72 - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-10-28 00:19:40,380 - INFO - google_llm.py:112 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2025-10-28 00:19:40,381 - INFO - models.py:8317 - AFC is enabled with max remote calls: 10.
+2025-10-28 00:19:41,408 - INFO - _client.py:1740 - HTTP Request: POST https://us-central1-aiplatform.googleapis.com/v1beta1/projects/cmpe297-homework2-476500/locations/us-central1/publishers/google/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-28 00:19:41,411 - INFO - google_llm.py:205 - Response received from the model.
+INFO:     127.0.0.1:33770 - "GET /apps/currency_agent/users/user/sessions/43714311-23d0-4b3f-a6f1-e35c4d907039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33770 - "GET /debug/trace/session/43714311-23d0-4b3f-a6f1-e35c4d907039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49804 - "POST /run_sse HTTP/1.1" 200 OK
+2025-10-28 00:19:50,950 - INFO - envs.py:47 - Loaded .env file for currency_agent at /home/dustin_t_nguyen/currency-agent/.env
+2025-10-28 00:19:50,952 - INFO - mcp_session_manager.py:332 - Cleaning up disconnected session: session_no_headers
+2025-10-28 00:19:50,956 - INFO - _client.py:1740 - HTTP Request: DELETE http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:50,957 - WARNING - mcp_session_manager.py:336 - Error during disconnected session cleanup: Attempted to exit cancel scope in a different task than it was entered in
+2025-10-28 00:19:51,012 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:51,012 - INFO - streamable_http.py:134 - Received session ID: bc539c148ffa410c9bdee211108a3367
+2025-10-28 00:19:51,013 - INFO - streamable_http.py:146 - Negotiated protocol version: 2025-06-18
+2025-10-28 00:19:51,021 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 202 Accepted"
+2025-10-28 00:19:51,023 - INFO - _client.py:1740 - HTTP Request: GET http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:51,028 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:51,030 - WARNING - base_authenticated_tool.py:72 - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-10-28 00:19:51,117 - INFO - google_llm.py:112 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2025-10-28 00:19:51,118 - INFO - models.py:8317 - AFC is enabled with max remote calls: 10.
+2025-10-28 00:19:52,172 - INFO - _client.py:1740 - HTTP Request: POST https://us-central1-aiplatform.googleapis.com/v1beta1/projects/cmpe297-homework2-476500/locations/us-central1/publishers/google/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-28 00:19:52,174 - INFO - google_llm.py:205 - Response received from the model.
+2025-10-28 00:19:52,174 - WARNING - types.py:5481 - Warning: there are non-text parts in the response: ['thought_signature', 'function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-10-28 00:19:52,180 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:52,822 - INFO - _client.py:1740 - HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+2025-10-28 00:19:52,825 - WARNING - base_authenticated_tool.py:72 - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-10-28 00:19:52,912 - INFO - google_llm.py:112 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2025-10-28 00:19:52,913 - INFO - models.py:8317 - AFC is enabled with max remote calls: 10.
+2025-10-28 00:19:53,656 - INFO - _client.py:1740 - HTTP Request: POST https://us-central1-aiplatform.googleapis.com/v1beta1/projects/cmpe297-homework2-476500/locations/us-central1/publishers/google/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-10-28 00:19:53,658 - INFO - google_llm.py:205 - Response received from the model.
+INFO:     127.0.0.1:49804 - "GET /debug/trace/session/43714311-23d0-4b3f-a6f1-e35c4d907039 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49818 - "GET /apps/currency_agent/users/user/sessions/43714311-23d0-4b3f-a6f1-e35c4d907039 HTTP/1.1" 200 OK
+^CINFO:     Shutting down
+INFO:     Waiting for application shutdown.
+
++-----------------------------------------------------------------------------+
+| ADK Web Server shutting down...                                             |
++-----------------------------------------------------------------------------+
+
+2025-10-28 00:28:19,542 - INFO - runners.py:628 - Closing toolset: MCPToolset
+2025-10-28 00:28:19,547 - INFO - _client.py:1740 - HTTP Request: DELETE http://localhost:8080/mcp "HTTP/1.1 200 OK"
+Warning: Error during MCP session cleanup for session_no_headers: Attempted to exit cancel scope in a different task than it was entered in
+2025-10-28 00:28:19,548 - INFO - runners.py:631 - Successfully closed toolset: MCPToolset
+INFO:     Application shutdown complete.
+INFO:     Finished server process [2941]
+
+Aborted!
+dustin_t_nguyen@cloudshell:~/currency-agent (cmpe297-homework2-476500)$ 

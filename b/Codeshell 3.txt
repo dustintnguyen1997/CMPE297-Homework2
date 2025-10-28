@@ -1,0 +1,132 @@
+Welcome to Cloud Shell! Type "help" to get started, or type "gemini" to try prompting with Gemini CLI.
+Your Cloud Platform project in this session is set to cmpe297-homework2-476500.
+Use `gcloud config set project [PROJECT_ID]` to change to a different project.
+dustin_t_nguyen@cloudshell:~ (cmpe297-homework2-476500)$ uv run uvicorn currency_agent.agent:a2a_app --host localhost --port 10000
+Traceback (most recent call last):
+  File "/home/dustin_t_nguyen/.venv/bin/uvicorn", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/click/core.py", line 1462, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/click/core.py", line 1383, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/click/core.py", line 1246, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/click/core.py", line 814, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/uvicorn/main.py", line 423, in main
+    run(
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/uvicorn/main.py", line 593, in run
+    server.run()
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/uvicorn/config.py", line 438, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/uvicorn/importer.py", line 22, in import_from_string
+    raise exc from None
+  File "/home/dustin_t_nguyen/.venv/lib/python3.12/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'currency_agent'
+dustin_t_nguyen@cloudshell:~ (cmpe297-homework2-476500)$ cd currency_agent
+-bash: cd: currency_agent: No such file or directory
+dustin_t_nguyen@cloudshell:~ (cmpe297-homework2-476500)$ cd currency-agent
+dustin_t_nguyen@cloudshell:~/currency-agent (cmpe297-homework2-476500)$ uv run uvicorn currency_agent.agent:a2a_app --host localhost --port 10000
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/protobuf/runtime_version.py:98: UserWarning: Protobuf gencode version 5.29.3 is exactly one major version older than the runtime version 6.31.1 at a2a.proto. Please update the gencode to avoid compatibility violations in the next runtime release.
+  warnings.warn(
+[INFO]: --- 🔧 Loading MCP tools from MCP Server... ---
+[INFO]: --- 🤖 Creating ADK Currency Agent... ---
+/home/dustin_t_nguyen/currency-agent/currency_agent/agent.py:40: UserWarning: [EXPERIMENTAL] to_a2a: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  a2a_app = to_a2a(root_agent, port=10000)
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/a2a/utils/agent_to_a2a.py:88: UserWarning: [EXPERIMENTAL] A2aAgentExecutor: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  agent_executor = A2aAgentExecutor(
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/a2a/utils/agent_to_a2a.py:98: UserWarning: [EXPERIMENTAL] AgentCardBuilder: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  card_builder = AgentCardBuilder(
+INFO:     Started server process [3756]
+INFO:     Waiting for application startup.
+[INFO]: HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+[INFO]: Received session ID: d3be50b5863e4792aa6eb41122e4ea68
+[INFO]: Negotiated protocol version: 2025-06-18
+[INFO]: HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 202 Accepted"
+[INFO]: HTTP Request: GET http://localhost:8080/mcp "HTTP/1.1 200 OK"
+[INFO]: HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/tools/mcp_tool/mcp_tool.py:88: UserWarning: [EXPERIMENTAL] BaseAuthenticatedTool: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  super().__init__(
+[WARNING]: auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+[INFO]: HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+[WARNING]: auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://localhost:10000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:54954 - "GET /.well-known/agent-card.json HTTP/1.1" 200 OK
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/a2a/utils/agent_to_a2a.py:82: UserWarning: [EXPERIMENTAL] InMemoryCredentialService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  credential_service=InMemoryCredentialService(),
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/auth/credential_service/in_memory_credential_service.py:33: UserWarning: [EXPERIMENTAL] BaseCredentialService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  super().__init__()
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/a2a/executor/a2a_agent_executor.py:186: UserWarning: [EXPERIMENTAL] convert_a2a_request_to_adk_run_args: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  run_args = convert_a2a_request_to_adk_run_args(context)
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/a2a/converters/request_converter.py:64: UserWarning: [EXPERIMENTAL] convert_a2a_part_to_genai_part: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  convert_a2a_part_to_genai_part(part)
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/a2a/executor/a2a_agent_executor.py:216: UserWarning: [EXPERIMENTAL] TaskResultAggregator: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  task_result_aggregator = TaskResultAggregator()
+[INFO]: Task not found or task_id not set. Creating new task for event (task_id: f1c0449f-3888-48c0-b217-9a710dcb4be0, context_id: 2f9b081a-df51-4cf7-970a-bfaebaa3f4c4).
+[INFO]: HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+[WARNING]: auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+[INFO]: Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+[INFO]: AFC is enabled with max remote calls: 10.
+[INFO]: HTTP Request: POST https://us-central1-aiplatform.googleapis.com/v1beta1/projects/cmpe297-homework2-476500/locations/us-central1/publishers/google/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+[INFO]: Response received from the model.
+[WARNING]: Warning: there are non-text parts in the response: ['thought_signature', 'function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/a2a/executor/a2a_agent_executor.py:219: UserWarning: [EXPERIMENTAL] convert_event_to_a2a_events: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  for a2a_event in convert_event_to_a2a_events(
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/a2a/converters/event_converter.py:512: UserWarning: [EXPERIMENTAL] convert_event_to_a2a_message: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  message = convert_event_to_a2a_message(event, invocation_context)
+/home/dustin_t_nguyen/currency-agent/.venv/lib/python3.12/site-packages/google/adk/a2a/converters/event_converter.py:350: UserWarning: [EXPERIMENTAL] convert_genai_part_to_a2a_part: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  a2a_part = convert_genai_part_to_a2a_part(part)
+[INFO]: HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+[INFO]: HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+[WARNING]: auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+[INFO]: Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+[INFO]: AFC is enabled with max remote calls: 10.
+[INFO]: HTTP Request: POST https://us-central1-aiplatform.googleapis.com/v1beta1/projects/cmpe297-homework2-476500/locations/us-central1/publishers/google/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+[INFO]: Response received from the model.
+[WARNING]: Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+INFO:     127.0.0.1:54954 - "POST / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54954 - "POST / HTTP/1.1" 200 OK
+[INFO]: Task not found or task_id not set. Creating new task for event (task_id: c0a20d32-99da-4a8a-a614-758ce02acc2f, context_id: a203a008-1675-4bf2-81ea-68f22d7fa2b7).
+[INFO]: HTTP Request: POST http://localhost:8080/mcp "HTTP/1.1 200 OK"
+[WARNING]: auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+[INFO]: Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+[INFO]: AFC is enabled with max remote calls: 10.
+[INFO]: HTTP Request: POST https://us-central1-aiplatform.googleapis.com/v1beta1/projects/cmpe297-homework2-476500/locations/us-central1/publishers/google/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+[INFO]: Response received from the model.
+[WARNING]: Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+INFO:     127.0.0.1:54954 - "POST / HTTP/1.1" 200 OK
