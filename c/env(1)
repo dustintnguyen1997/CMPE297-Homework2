@@ -1,0 +1,7 @@
+GOOGLE_GENAI_USE_VERTEXAI=TRUE
+GOOGLE_CLOUD_PROJECT=CMPE297-Homework3
+GOOGLE_CLOUD_LOCATION=us-central1
+STAGING_BUCKET=gs://purchasing-concierge-CMPE297-Homework3
+PIZZA_SELLER_AGENT_URL=https://pizza-agent-586737733483.us-central1.run.app
+BURGER_SELLER_AGENT_URL=https://burger-agent-586737733483.us-central1.run.app
+AGENT_ENGINE_RESOURCE_NAME={your-agent-engine-resource-name}
